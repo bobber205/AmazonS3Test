@@ -1,0 +1,17 @@
+Policy Name:
+AdministratorAccess-201402012113
+
+
+
+Policy Document:
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "*",
+      "Resource": "*"
+    }
+  ]
+}
