@@ -49,15 +49,14 @@ angular.module('amazonS3TestApp')
             $scope.name = items.name;
             $scope.url = items.url;
         }
-    ]).directive('filelistBind', function($timeout) {
-        return function(scope, elm, attrs) {
-            elm.bind('change', function(evt) {
+    ]).directive('filelistBind', ["$timeout",
+        function($timeout) {
+            return function(scope, elm, attrs) {
+                elm.bind('change', function(evt) {
                     $timeout(function() {
                         scope[attrs.name] = evt.target.files;
                     });
-                scope.$apply(function() {
-                    
                 });
-            });
-        };
-    });
+            };
+        }
+    ]);
