@@ -16,8 +16,5 @@
  <ul ng-if="!hidden">
     <li ng-repeat="current in fileList">{{current.name}}: <button style="width: auto; height: auto;" class="btn" type="button" ng-click="viewImage(current)">View</button></li>
  </ul>
-</div>
-
-<div class="footer">
-  <p>♥ from the Yeoman team</p>
+ <p ng-if="fileList && fileList.length == 0">No files...</p>
 </div>

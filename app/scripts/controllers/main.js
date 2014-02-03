@@ -14,8 +14,6 @@ angular.module('amazonS3TestApp')
 
             $scope.status = "Loading...";
 
-            $scope.fileList = [];
-
             $scope.viewImage = function(imageObject) {
                 console.log("viewing...", imageObject, $modal);
                 $modal.open({
