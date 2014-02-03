@@ -7,14 +7,14 @@ angular.module('amazonS3TestApp')
 
             files.then(function(objects) {
                 //what objects are there???
+                $scope.status = "Done";
                 console.log("File List:", objects);
                 $scope.fileList = objects;
             });
 
-            $scope.fileList = [{
-                name: "Loading...",
-                url: "http://www.whoaIamstilloading.com"
-            }];
+            $scope.status = "Loading...";
+
+            $scope.fileList = [];
 
             $scope.viewImage = function(imageObject) {
                 console.log("viewing...", imageObject, $modal);
@@ -28,10 +28,38 @@ angular.module('amazonS3TestApp')
                     }
                 });
             };
+
+            $scope.$watch("files", function(file) {
+                console.log("Files----", arguments);
+                if (!file) return;
+                console.log(file);
+                $scope.status = "Uploading...";
+                $scope.hidden = true;
+                S3Service.uploadFile(file[0]).then(function() {
+                    $scope.status = "Uploaded. Reloading...";
+                    S3Service.getAllFileObjects().then(function(objects) {
+                        $scope.hidden = false;
+                        $scope.fileList = objects;
+                        $scope.status = "Done";
+                    })
+                });
+            })
         }
     ])
-    .controller('ViewController', ["$scope", "S3Service", "$modal",
-        function($scope, S3Service, $modal) {
-            console.log("Viewcontroller");
+    .controller('ViewController', ["$scope", "items", "$timeout",
+        function($scope, items, $timeout) {
+            $scope.name = items.name;
+            $scope.url = items.url;
         }
-    ]);
+    ]).directive('filelistBind', function($timeout) {
+        return function(scope, elm, attrs) {
+            elm.bind('change', function(evt) {
+                    $timeout(function() {
+                        scope[attrs.name] = evt.target.files;
+                    });
+                scope.$apply(function() {
+                    
+                });
+            });
+        };
+    });

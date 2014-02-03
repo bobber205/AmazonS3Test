@@ -8,8 +8,12 @@
 </div>
 
 <div class="jumbotron">
- All Files
- <ul>
+ <input type="file" id="files"  filelist-bind name="files"/>
+ <br/>
+ <span>All Files </span>
+ <br/>Status: {{status}}<br/>
+ 
+ <ul ng-if="!hidden">
     <li ng-repeat="current in fileList">{{current.name}}: <button style="width: auto; height: auto;" class="btn" type="button" ng-click="viewImage(current)">View</button></li>
  </ul>
 </div>

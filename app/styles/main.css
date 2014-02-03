@@ -12,6 +12,13 @@ ul li {
   margin: 10px;
 }
 
+/*.modal-dialog {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+*/
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
