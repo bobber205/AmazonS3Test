@@ -10,7 +10,7 @@
 <div class="jumbotron">
  All Files
  <ul>
-    <li ng-repeat="current in fileList">{{current.name}}: <a href="{{current.url}}">(view)</a></li>
+    <li ng-repeat="current in fileList">{{current.name}}: <button style="width: auto; height: auto;" class="btn" type="button" ng-click="viewImage(current)">View</button></li>
  </ul>
 </div>
 

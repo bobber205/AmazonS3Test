@@ -4,7 +4,8 @@ var s3app = angular.module('amazonS3TestApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'ui.bootstrap'
 ])
   .config(function($routeProvider) {
     $routeProvider
